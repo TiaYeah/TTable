@@ -142,20 +142,25 @@
     <ClInclude Include="..\..\Polinom\Polinom\TList.h" />
     <ClInclude Include="TArrayHashTable.h" />
     <ClInclude Include="TArrayTable.h" />
+    <ClInclude Include="TBalTree.h" />
     <ClInclude Include="THashTable.h" />
     <ClInclude Include="TRecord.h" />
     <ClInclude Include="TScanTable.h" />
     <ClInclude Include="TSortTable.h" />
+    <ClInclude Include="TStack.h" />
     <ClInclude Include="TTable.h" />
+    <ClInclude Include="TTreeTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="TArrayHashTable.cpp" />
     <ClCompile Include="TArrayTable.cpp" />
+    <ClCompile Include="TBalTree.cpp" />
     <ClCompile Include="THashTable.cpp" />
     <ClCompile Include="TScanTable.cpp" />
     <ClCompile Include="TSortTable.cpp" />
     <ClCompile Include="TTable.cpp" />
+    <ClCompile Include="TTreeTable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,6 +33,8 @@ public:
 
 	virtual void goNext() = 0;
 
+	virtual void print(std::ostream& os) = 0;
+
 	virtual TRecord getCurrRec() = 0;
 
 	friend std::ostream& operator<< (std::ostream& os, TTable& t) {

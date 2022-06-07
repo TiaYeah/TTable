@@ -4,22 +4,29 @@ class TArrayHashTable : public THashTable
 {
     TRecord* mas;
     int size, step, curr;
-    TRecord free, del;
+    TRecord free, delRec;
 public:
-    TArrayHashTable(int _size = 100, int _step= 7)
+    TArrayHashTable(int _size = 100, int _step = 7)
     {
         size = _size;
         step = _step;
         mas = new TRecord[size];
         free.key = -1;
-        del.key = -2;
+        delRec.key = -2;
         for (int i = 0; i < size; ++i)
         {
             mas[i] = free;
         }
     }
+    ~TArrayHashTable()
+    {
+        delete[] mas;
+    }
     int getSize() { return size; }
-    TRecord getCurrentRecord();
+    TRecord getCurrentRecord()
+    {
+        return mas[curr];
+    }
     bool find(TKey key)
     {
         int pos = HashFunc(key) % size, delPos = -1;
@@ -35,8 +42,9 @@ public:
                 res = true;
                 break;
             }
-            else if (mas[pos] == del && delPos == -1) {
+            else if (mas[pos] == delRec && delPos == -1) {
                 delPos = pos;
+                curr = pos;
             }
             pos = (pos + step) % size;
         }
@@ -55,12 +63,13 @@ public:
         eff++;
         return true;
     }
+
     bool del(TKey key)
     {
         if (isEmpty() || !find(key)) {
             return false;
         }
-        mas[curr] = del;
+        mas[curr] = delRec;
         dataCount--;
         eff++;
         return true;
@@ -68,26 +77,38 @@ public:
     void reset()
     {
         for (curr = 0; curr < size; curr++) {
-            if (mas[curr] != free && mas[curr] != del) {
+            if (mas[curr] != free && mas[curr] != delRec) {
                 return;
             }
         }
     }
     void goNext()
     {
-        for (curr = 0; curr < size; curr++) {
-            if (mas[curr] == free || mas[curr] == del) {
+        for (curr++ ; curr < size; curr++) {
+            if (mas[curr] != free && mas[curr] != delRec) {
                 return;
             }
         }
     }
-    bool isFull()
+    bool isEnd()
     {
         return curr == size;
     }
-    bool isEnd()
+
+    TRecord getCurrRec() {
+        return mas[curr];
+    }
+    bool isFull() const
     {
-        return curr == dataCount;
+        return curr == size;
+    }
+
+    void print(std::ostream& os)
+    {
+        for (reset(); !isEnd(); goNext()) {
+            os << mas[curr] << std::endl;
+        }
+        reset();
+        os << std::endl;
     }
 };
-

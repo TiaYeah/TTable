@@ -27,12 +27,12 @@ public:
 			while (mas[s1].key < midEl)
 			{
 				s1++;
-				++eff;
+				eff++;
 			}
 			while (mas[f1].key > midEl)
 			{
 				f1--;
-				++eff;
+				eff++;
 			}
 			if (s1 <= f1)
 			{
@@ -113,6 +113,14 @@ public:
 		dataCount--;
 
 		return true;
+	}
+
+	void print(std::ostream& os)
+	{
+		for (int i = 0; i < dataCount; i++) {
+			os << mas[i] << std::endl;
+		}
+		os << std::endl;
 	}
 };
 

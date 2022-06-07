@@ -37,5 +37,13 @@ public:
 		eff++;
 		return true;
 	}
+
+	void print(std::ostream& os)
+	{
+		for (int i = 0; i < dataCount; i++) {
+			os << mas[i] << std::endl;
+		}
+		os << std::endl;
+	}
 };
 
