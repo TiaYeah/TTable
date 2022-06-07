@@ -100,7 +100,12 @@ public:
     }
     bool isFull() const
     {
-        return curr == size;
+        for (int i = 0; i < size; i++) {
+            if (mas[i] == free || mas[i] == delRec) {
+                return false;
+            }
+        }
+        return true;
     }
 
     void print(std::ostream& os)
